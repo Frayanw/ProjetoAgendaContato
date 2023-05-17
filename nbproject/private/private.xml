@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Aulas%20ADS/Programação%20orientada%20a%20objeto%20-%20Profº%20Eugênio/Códigos%20feito%20em%20POO%20(%20NETBEANS)/ProjetoAgendaContatos/src/modelos/Contato.java</file>
             <file>file:/D:/Aulas%20ADS/Programação%20orientada%20a%20objeto%20-%20Profº%20Eugênio/Códigos%20feito%20em%20POO%20(%20NETBEANS)/ProjetoAgendaContatos/src/controle/ContatoControle.java</file>
             <file>file:/D:/Aulas%20ADS/Programação%20orientada%20a%20objeto%20-%20Profº%20Eugênio/Códigos%20feito%20em%20POO%20(%20NETBEANS)/ProjetoAgendaContatos/src/visao/TelaPrincipal.java</file>
-            <file>file:/D:/Aulas%20ADS/Programação%20orientada%20a%20objeto%20-%20Profº%20Eugênio/Códigos%20feito%20em%20POO%20(%20NETBEANS)/ProjetoAgendaContatos/src/modelos/IContatoCRUD.java</file>
             <file>file:/D:/Aulas%20ADS/Programação%20orientada%20a%20objeto%20-%20Profº%20Eugênio/Códigos%20feito%20em%20POO%20(%20NETBEANS)/ProjetoAgendaContatos/src/persistência/ContatoDAO.java</file>
             <file>file:/D:/Aulas%20ADS/Programação%20orientada%20a%20objeto%20-%20Profº%20Eugênio/Códigos%20feito%20em%20POO%20(%20NETBEANS)/ProjetoAgendaContatos/src/bancodedados/contatosBD.txt</file>
-            <file>file:/D:/Aulas%20ADS/Programação%20orientada%20a%20objeto%20-%20Profº%20Eugênio/Códigos%20feito%20em%20POO%20(%20NETBEANS)/ProjetoAgendaContatos/src/modelos/Telefone.java</file>
         </group>
     </open-files>
 </project-private>

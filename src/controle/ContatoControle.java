@@ -1,6 +1,8 @@
 package controle;
 
+import java.io.EOFException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import modelos.Contato;
@@ -16,26 +18,6 @@ public class ContatoControle implements IContatoCRUD {
     public ContatoControle() {
         contatoPersistencia = new ContatoDAO();
     }
-
-    public boolean validarDDITelefone(String telefone)throws Exception {
-        // Expressão regular que verifica se a string contém apenas números e tem entre 1 e 3 caracteres
-        String regex = "^[0-9]{2}$";
-        // Extrai os primeiros caracteres da string correspondentes ao DDI
-        String ddi = telefone.substring(0, Math.min(telefone.length(), 3));
-        
-        
-        
-        return ddi.matches(regex);
-    }
-
-    public boolean validarDDDTelefone(String telefone) {
-        // Expressão regular que verifica se a string contém apenas números e tem 2 caracteres
-        String regex = "^[0-9]{2}$";
-    // Extrai os primeiros caracteres da string correspondentes ao DDI
-        String ddd = telefone.substring(0, Math.min(telefone.length(), 3));
-    return ddd.matches(regex);
-    }
-
     public boolean validarNumero(String numero)throws Exception {
         // Validar Número
         String regex = "^[0-9]+$";
@@ -44,7 +26,83 @@ public class ContatoControle implements IContatoCRUD {
         }
         return numero.matches(regex);
     }
+    //Validar DDD do Brasil
+ private static final HashSet<String> dddsValidos = new HashSet<String>() {
+        {
+            add("11");
+            add("12");
+            add("13");
+            add("14");
+            add("15");
+            add("16");
+            add("17");
+            add("18");
+            add("19");
+            add("21");
+            add("22");
+            add("24");
+            add("27");
+            add("28");
+            add("31");
+            add("32");
+            add("33");
+            add("34");
+            add("35");
+            add("37");
+            add("38");
+            add("41");
+            add("42");
+            add("43");
+            add("44");
+            add("45");
+            add("46");
+            add("47");
+            add("48");
+            add("49");
+            add("51");
+            add("53");
+            add("54");
+            add("55");
+            add("61");
+            add("62");
+            add("63");
+            add("64");
+            add("65");
+            add("66");
+            add("67");
+            add("68");
+            add("69");
+            add("71");
+            add("73");
+            add("74");
+            add("75");
+            add("77");
+            add("79");
+            add("81");
+            add("82");
+            add("83");
+            add("84");
+            add("85");
+            add("86");
+            add("87");
+            add("88");
+            add("89");
+            add("91");
+            add("92");
+            add("93");
+            add("94");
+            add("95");
+            add("96");
+            add("97");
+            add("98");
+            add("99");
+        }
+    };
 
+    public static boolean validarDDD(String ddd) {
+        return dddsValidos.contains(ddd);
+    }
+    
     //Método Validar email
     private static final String EMAIL_REGEX
             = "^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$";
@@ -64,6 +122,55 @@ public class ContatoControle implements IContatoCRUD {
         return matcher.matches();
     }
 
+    
+    //Método validar CPF
+    public static boolean validarCPF(String cpf) {
+        cpf = cpf.replaceAll("[^0-9]", ""); // Remove caracteres não numéricos
+
+        if (cpf.length() != 11) {
+            return false;
+        }
+
+        // Verifica se todos os dígitos são iguais (ex: 111.111.111-11)
+        boolean todosDigitosIguais = true;
+        for (int i = 1; i < 11; i++) {
+            if (cpf.charAt(i) != cpf.charAt(0)) {
+                todosDigitosIguais = false;
+                break;
+            }
+        }
+        if (todosDigitosIguais) {
+            return false;
+        }
+
+        // Verifica o primeiro dígito verificador
+        int soma = 0;
+        for (int i = 0; i < 9; i++) {
+            int digito = cpf.charAt(i) - '0';
+            soma += digito * (10 - i);
+        }
+        int resto = soma % 11;
+        int digitoVerificador1 = (resto < 2) ? 0 : 11 - resto;
+        if (digitoVerificador1 != cpf.charAt(9) - '0') {
+            return false;
+        }
+
+        // Verifica o segundo dígito verificador
+        soma = 0;
+        for (int i = 0; i < 10; i++) {
+            int digito = cpf.charAt(i) - '0';
+            soma += digito * (11 - i);
+        }
+        resto = soma % 11;
+        int digitoVerificador2 = (resto < 2) ? 0 : 11 - resto;
+        if (digitoVerificador2 != cpf.charAt(10) - '0') {
+            return false;
+        }
+
+        return true;
+    }
+    
+    
     @Override
     public void incluir(Contato objContato) throws Exception {
         //Regras de Negócios de incluir
@@ -73,7 +180,8 @@ public class ContatoControle implements IContatoCRUD {
         //Validar email para ter @ e .com
 
         //Validando CPF
-        if (objContato.getCpf().matches("\\d{11}")) {
+        boolean validar = validarCPF(objContato.getCpf());
+        if (validar) {
         } else {
             throw new Exception("CPF Inválido");
         }
@@ -92,19 +200,11 @@ public class ContatoControle implements IContatoCRUD {
         } else {
             throw new Exception("Email Inválido");
         }
-
-        //Validar DDI
-        if (validarDDITelefone(objContato.getTelefone().getDDI())) {
-        } else {
-            throw new Exception("DDI inválido");
-        }
-
         //Validar DDD
-        if (validarDDDTelefone(objContato.getTelefone().getDDD())) {
-        } else {
-            throw new Exception("DDD inválido");
+        boolean valido = validarDDD(objContato.getTelefone().getDDD());
+        if (valido){
+            
         }
-
         //Validar numero
         if (validarNumero(objContato.getTelefone().getNumero())) {
         } else {
@@ -170,17 +270,6 @@ public class ContatoControle implements IContatoCRUD {
                     
                     //Validar DDI
                 }
-                if (validarDDITelefone(objContato.getTelefone().getDDI())) {
-                } else {
-                    throw new Exception("DDI inválido");
-                }
-
-                //Validar DDD
-                if (validarDDDTelefone(objContato.getTelefone().getDDD())) {
-                } else {
-                    throw new Exception("DDD inválido");
-                }
-
                 //Validar Numero
                 if (validarNumero(objContato.getTelefone().getNumero())) {
                 } else {

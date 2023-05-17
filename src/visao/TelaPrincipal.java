@@ -18,11 +18,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     //Método Limpar tela
     private void limparTela() {
-        jTextFieldCpf.setText("");
+        jFormattedTextFieldCpf.setText("");
         jTextFieldNomeCompleto.setText("");
         jTextFieldEmail.setText("");
-        jTextFieldDDI.setText("");
-        jTextFieldDDD.setText("");
+        jFormattedTextFieldDDI.setText("");
+        jFormattedTextFieldDDD.setText("");
         jTextFieldNumero.setText("");
     }
     //Método ordenar agenda pelo cpf
@@ -101,13 +101,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelCpf = new javax.swing.JLabel();
         jLabelnomeCompleto = new javax.swing.JLabel();
         jLabelEmail = new javax.swing.JLabel();
-        jTextFieldCpf = new javax.swing.JTextField();
         jTextFieldNomeCompleto = new javax.swing.JTextField();
         jTextFieldEmail = new javax.swing.JTextField();
         jLabelTelefone = new javax.swing.JLabel();
-        jTextFieldDDI = new javax.swing.JTextField();
-        jTextFieldDDD = new javax.swing.JTextField();
         jTextFieldNumero = new javax.swing.JTextField();
+        jFormattedTextFieldCpf = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldDDI = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldDDD = new javax.swing.JFormattedTextField();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -153,14 +153,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelEmail.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabelEmail.setText("EMAIL:");
 
-        jTextFieldCpf.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
         jTextFieldNomeCompleto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jTextFieldEmail.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
         jLabelTelefone.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabelTelefone.setText("TELEFONE:");
+
+        try {
+            jFormattedTextFieldCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFormattedTextFieldDDI.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("+##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        try {
+            jFormattedTextFieldDDD.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -170,34 +186,34 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabelCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelEmail)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabelTelefone)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFormattedTextFieldDDI, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFormattedTextFieldDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabelnomeCompleto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextFieldNomeCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabelTelefone)
+                        .addComponent(jLabelCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldDDI, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabelEmail)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCpf)
-                    .addComponent(jTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jFormattedTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelnomeCompleto)
@@ -209,10 +225,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTelefone)
-                    .addComponent(jTextFieldDDI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldDDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldDDI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldDDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/iconeFoto.jpg"))); // NOI18N
@@ -345,11 +361,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButtonIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluirActionPerformed
         try {
-            telefone.setDDI(jTextFieldDDI.getText());
-            telefone.setDDD(jTextFieldDDD.getText());
+            telefone.setDDI(jFormattedTextFieldDDI.getText());
+            telefone.setDDD(jFormattedTextFieldDDD.getText());
             telefone.setNumero(jTextFieldNumero.getText());
             
-            Contato obj = new Contato(jTextFieldCpf.getText(),
+            Contato obj = new Contato(jFormattedTextFieldCpf.getText(),
                     jTextFieldNomeCompleto.getText(),
                     jTextFieldEmail.getText(), telefone);
             
@@ -364,11 +380,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         try {
-            this.buscaContato = contatoControle.buscar(jTextFieldCpf.getText());
+            this.buscaContato = contatoControle.buscar(jFormattedTextFieldCpf.getText());
             jTextFieldNomeCompleto.setText(buscaContato.getNomeCompleto());
             jTextFieldEmail.setText(buscaContato.getEmail());
-            jTextFieldDDI.setText(buscaContato.getTelefone().getDDI());
-            jTextFieldDDD.setText(buscaContato.getTelefone().getDDD());
+            jFormattedTextFieldDDI.setText(buscaContato.getTelefone().getDDI());
+            jFormattedTextFieldDDD.setText(buscaContato.getTelefone().getDDD());
             jTextFieldNumero.setText(buscaContato.getTelefone().getNumero());
             mostrarTabela();
             throw new Exception("BUSCA BEM SUCEDIDA");
@@ -380,10 +396,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
         try {
-            telefone.setDDI(jTextFieldDDI.getText());
-            telefone.setDDD(jTextFieldDDD.getText());
+            telefone.setDDI(jFormattedTextFieldDDI.getText());
+            telefone.setDDD(jFormattedTextFieldDDD.getText());
             telefone.setNumero(jTextFieldNumero.getText());
-            Contato obj = new Contato(jTextFieldCpf.getText(),
+            Contato obj = new Contato(jFormattedTextFieldCpf.getText(),
                     jTextFieldNomeCompleto.getText(),
                     jTextFieldEmail.getText(), telefone);
 
@@ -398,7 +414,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButtonExluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExluirActionPerformed
         try {
-            contatoControle.excluir(jTextFieldCpf.getText());
+            contatoControle.excluir(jFormattedTextFieldCpf.getText());
             mostrarTabela();
             limparTela();
             throw new Exception("EXCLUIDO COM SUCESSO!!");
@@ -448,40 +464,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonExluir;
     private javax.swing.JButton jButtonIncluir;
+    private javax.swing.JFormattedTextField jFormattedTextFieldCpf;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDDD;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDDI;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelCpf;
-    private javax.swing.JLabel jLabelCpf1;
-    private javax.swing.JLabel jLabelCpf2;
     private javax.swing.JLabel jLabelEmail;
-    private javax.swing.JLabel jLabelEmail1;
-    private javax.swing.JLabel jLabelEmail2;
     private javax.swing.JLabel jLabelTelefone;
-    private javax.swing.JLabel jLabelTelefone1;
-    private javax.swing.JLabel jLabelTelefone2;
     private javax.swing.JLabel jLabelnomeCompleto;
-    private javax.swing.JLabel jLabelnomeCompleto1;
-    private javax.swing.JLabel jLabelnomeCompleto2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextFieldCpf;
-    private javax.swing.JTextField jTextFieldCpf1;
-    private javax.swing.JTextField jTextFieldCpf2;
-    private javax.swing.JTextField jTextFieldDDD;
-    private javax.swing.JTextField jTextFieldDDI;
     private javax.swing.JTextField jTextFieldEmail;
-    private javax.swing.JTextField jTextFieldEmail1;
-    private javax.swing.JTextField jTextFieldEmail2;
     private javax.swing.JTextField jTextFieldNomeCompleto;
-    private javax.swing.JTextField jTextFieldNomeCompleto1;
-    private javax.swing.JTextField jTextFieldNomeCompleto2;
     private javax.swing.JTextField jTextFieldNumero;
     // End of variables declaration//GEN-END:variables
 }

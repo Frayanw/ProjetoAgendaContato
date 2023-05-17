@@ -146,7 +146,7 @@ public class ContatoDAO implements IContatoCRUD {
             //Criar o buffer do arquivo
             BufferedWriter bw = new BufferedWriter(fw);
             
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < agenda.size(); i++) {
                 if (!cpf.equals(agenda.get(i).getCpf())) {
                     contato = new Contato();
                     telefone = new Telefone();
